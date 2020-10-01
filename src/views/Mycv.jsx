@@ -2,6 +2,7 @@ import React from "react";
 
 // reactstrap components
 import { Card, CardHeader, CardBody, Row, Col } from "reactstrap";
+import Camera from 'react-camera';
 
 class Myapi extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class Myapi extends React.Component {
                 <CardHeader>
                   <h5 className="title">My CV</h5>
                   <hr></hr>
+
                   
                 </CardHeader>
                 <CardBody>
@@ -68,6 +70,25 @@ class Myapi extends React.Component {
                   </h6>
                       
                   </div>
+
+                  <div style={style.container}>
+                    <Camera
+                      style={style.preview}
+                      ref={(cam) => {
+                        this.camera = cam;
+                      }}
+                    >
+                      <div style={style.captureContainer} onClick={this.takePicture}>
+                        <div style={style.captureButton} />
+                      </div>
+                    </Camera>
+                    <img
+                      style={style.captureImage}
+                      ref={(img) => {
+                        this.img = img;
+                      }}
+                    />
+                  </div>
                 </CardBody>
               </Card>
             </Col>
@@ -77,5 +98,28 @@ class Myapi extends React.Component {
     );
   }
 }
-
+const style = {
+  preview: {
+    position: 'relative',
+  },
+  captureContainer: {
+    display: 'flex',
+    position: 'absolute',
+    justifyContent: 'center',
+    zIndex: 1,
+    bottom: 0,
+    width: '100%'
+  },
+  captureButton: {
+    backgroundColor: '#fff',
+    borderRadius: '50%',
+    height: 56,
+    width: 56,
+    color: '#000',
+    margin: 20
+  },
+  captureImage: {
+    width: '100%',
+  }
+};
 export default Myapi;
